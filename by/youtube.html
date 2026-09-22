@@ -1,14 +1,33 @@
 <!DOCTYPE html>
 <html>
     <head>
+      <meta charset="UTF-8">
         <title>Youtube/clone</title>
         <style>
-          .thumnail {
-            width: 30px;
+          .thumbnail {
+            width: 300px;
+            display: block;
+          }
+
+          .search-bar {
+            
+          }
+
+          .video-title {
+            width: 300px;
+          }
+
+          .video-author,
+          .video-stats {
+            display: inline-block;
           }
         </style>
     </head>
     <body>
-        <img src="thumbnails/thumbnail.avif">
-    </body>
+        <img class="thumbnail" src="thumbnails/thumbnail.avif">
+        <input class="search-bar" type="text" placeholder="Search">
+        <p class="video-title"> <strong>Minecraft Features</strong> Nobody Uses</p>
+        <p class="video-author"><strong>PrismBlock</strong></p>
+        <p class="video-stats"><strong> 1.5M views • 4 weeks ago</strong></p>
+      </body>
 </html>
