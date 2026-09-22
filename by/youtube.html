@@ -14,10 +14,6 @@
             display: block;
         }
 
-        .video-title {
-            width: 300px;
-        }
-
         .video-preview {
             width: 300px;
             display: inline-block;
@@ -25,44 +21,90 @@
             margin-right: 15px;
             margin-bottom: 15px;
         }
+
+        .channel-pfp {
+            display: inline-block;
+            width: 50px;
+            vertical-align: top;
+        }
+
+        .profile-pic {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+        }
+
+        .video-info {
+            display: inline-block;
+            width: 240px;
+            vertical-align: top;
+        }
+
+        .video-title {
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+
+        .video-author {
+            margin-top: 0;
+            margin-bottom: 5px;
+        }
+
+        .video-stats {
+            margin-top: 0;
+        }
     </style>
 </head>
 
 <body>
+
     <input class="search-bar" type="text" placeholder="Search">
 
     <div class="video-preview">
         <img class="thumbnail" src="thumbnails/thumbnail.avif">
 
-        <p class="video-title">
-            <strong>Minecraft Features</strong> Nobody Uses
-        </p>
+        <div class="channel-pfp">
+            <img class="profile-pic" src="channel-pfp's/prismpfp.jpg">
+        </div>
 
-        <p class="video-author">
-            <strong>PrismBlock</strong>
-        </p>
+        <div class="video-info">
+            <p class="video-title">
+                Minecraft Features Nobody Uses
+            </p>
 
-        <p class="video-stats">
-            <strong>1.5M views • 4 weeks ago</strong>
-        </p>
+            <p class="video-author">
+                PrismBlock
+            </p>
+
+            <p class="video-stats">
+                1.5M views • 4 weeks ago
+            </p>
+        </div>
     </div>
 
     <div class="video-preview">
         <img class="thumbnail" src="thumbnails/caldruki.avif">
 
-        <p class="video-title">
-            <strong>Stupidest</strong> Kid Comments
-        </p>
+        <div class="channel-pfp">
+            <img class="profile-pic" src="channel-pfp's/caldruki.jpg">
+        </div>
 
-        <p class="video-author">
-            <strong>Caldruki</strong>
-        </p>
+        <div class="video-info">
+            <p class="video-title">
+                Stupidest Kid Comments
+            </p>
 
-        <p class="video-stats">
-            <strong>1.3M views • 8 months ago</strong>
-        </p>
+            <p class="video-author">
+                Caldruki
+            </p>
+
+            <p class="video-stats">
+                1.3M views • 8 months ago
+            </p>
+        </div>
     </div>
 
     <p class="version">Version 1.0</p>
+
 </body>
 </html>
