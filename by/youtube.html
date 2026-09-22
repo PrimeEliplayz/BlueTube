@@ -1,33 +1,63 @@
 <!DOCTYPE html>
 <html>
-    <head>
-      <meta charset="UTF-8">
-        <title>Youtube/clone</title>
-        <style>
-          .thumbnail {
+<head>
+    <meta charset="UTF-8">
+    <title>Youtube/clone</title>
+
+    <style>
+        .search-bar {
+          display: block;
+        }
+
+        .thumbnail {
             width: 300px;
             display: block;
-          }
+        }
 
-          .search-bar {
-            
-          }
-
-          .video-title {
+        .video-title {
             width: 300px;
-          }
+        }
 
-          .video-author,
-          .video-stats {
+        .video-preview {
+            width: 300px;
             display: inline-block;
-          }
-        </style>
-    </head>
-    <body>
+        }
+    </style>
+</head>
+
+<body>
+    <input class="search-bar" type="text" placeholder="Search">
+
+    <div class="video-preview">
         <img class="thumbnail" src="thumbnails/thumbnail.avif">
-        <input class="search-bar" type="text" placeholder="Search">
-        <p class="video-title"> <strong>Minecraft Features</strong> Nobody Uses</p>
-        <p class="video-author"><strong>PrismBlock</strong></p>
-        <p class="video-stats"><strong> 1.5M views • 4 weeks ago</strong></p>
-      </body>
+
+        <p class="video-title">
+            <strong>Minecraft Features</strong> Nobody Uses
+        </p>
+
+        <p class="video-author">
+            <strong>PrismBlock</strong>
+        </p>
+
+        <p class="video-stats">
+            <strong>1.5M views • 4 weeks ago</strong>
+        </p>
+    </div>
+
+    <div class="video-preview">
+        <img class="thumbnail" src="thumbnails/caldruki.avif">
+
+        <p class="video-title">
+            <strong>Stupidest</strong> Kid Comments
+        </p>
+
+        <p class="video-author">
+            <strong>Caldruki</strong>
+        </p>
+
+        <p class="video-stats">
+            <strong>1.3M views • 8 months ago</strong>
+        </p>
+    </div>
+</body>
 </html>
