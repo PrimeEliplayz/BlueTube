@@ -15,8 +15,166 @@
             margin-bottom: 0;
         }
 
+        .search-container {
+            display: flex;
+            width: 600px;
+            height: 40px;
+            margin: 12px auto 25px auto;
+        }
+
         .search-bar {
-            display: block;
+            flex: 1;
+            height: 40px;
+            box-sizing: border-box;
+            border: 1px solid #c6c6c6;
+            border-right: none;
+            border-radius: 20px 0 0 20px;
+            padding: 0 18px;
+            font-family: Arial, sans-serif;
+            font-size: 16px;
+            outline: none;
+        }
+
+        .search-bar:focus {
+            border-color: #1c62b9;
+        }
+
+        .search-button {
+            width: 64px;
+            height: 40px;
+            border: 1px solid #c6c6c6;
+            border-radius: 0 20px 20px 0;
+            background-color: #f8f8f8;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .search-button:hover {
+            background-color: #f0f0f0;
+        }
+
+        .search-icon {
+            position: absolute;
+            width: 14px;
+            height: 14px;
+            border: 2px solid #222;
+            border-radius: 50%;
+            left: 23px;
+            top: 10px;
+            box-sizing: border-box;
+        }
+
+        .search-icon::after {
+            content: "";
+            position: absolute;
+            width: 7px;
+            height: 2px;
+            background-color: #222;
+            transform: rotate(45deg);
+            right: -5px;
+            bottom: -3px;
+        }
+
+        .plus-button {
+            position: fixed;
+            top: 15px;
+            right: 20px;
+            width: 42px;
+            height: 42px;
+            border: none;
+            border-radius: 50%;
+            background-color: #f2f2f2;
+            cursor: pointer;
+            z-index: 1000;
+            padding: 0;
+        }
+
+        .plus-button::before,
+        .plus-button::after {
+            content: "";
+            position: absolute;
+            background-color: #222;
+            border-radius: 1px;
+        }
+
+        .plus-button::before {
+            width: 18px;
+            height: 2px;
+            left: 12px;
+            top: 20px;
+        }
+
+        .plus-button::after {
+            width: 2px;
+            height: 18px;
+            left: 20px;
+            top: 12px;
+        }
+
+        .plus-button:hover {
+            background-color: #e5e5e5;
+        }
+
+        .plus-button:active {
+            background-color: #d8d8d8;
+        }
+
+        .maintenance-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.35);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.2s ease;
+            z-index: 2000;
+        }
+
+        .maintenance-overlay.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .maintenance-box {
+            width: 320px;
+            padding: 25px;
+            background: white;
+            border-radius: 14px;
+            text-align: center;
+            font-family: Arial, sans-serif;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .maintenance-title {
+            font-family: Arial, sans-serif;
+            font-size: 22px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #222;
+        }
+
+        .maintenance-text {
+            font-family: Arial, sans-serif;
+            font-size: 15px;
+            color: #606060;
+            margin-bottom: 20px;
+        }
+
+        .maintenance-close {
+            border: none;
+            border-radius: 8px;
+            padding: 9px 22px;
+            background: #222;
+            color: white;
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .maintenance-close:hover {
+            background: #444;
         }
 
         .thumbnail {
@@ -36,6 +194,7 @@
             display: inline-block;
             width: 50px;
             vertical-align: top;
+            background-color: gray;
         }
 
         .profile-pic {
@@ -46,17 +205,17 @@
 
         .video-info {
             display: inline-block;
-            width: 240px;
+            width: 245px;
             vertical-align: top;
+            background-color: gray;
         }
 
         .video-title {
             margin-top: 0;
-            margin-bottom: 10px;
+            margin-bottom: 12px;
             font-size: 14px;
             font-weight: 500;
             line-height: 20px;
-            margin-bottom: 12px;
 
             background: linear-gradient(
                 90deg,
@@ -90,7 +249,7 @@
 
         .video-author {
             margin-top: 5px;
-            margin-bottom: 5px;
+            margin-bottom: 4px;
             font-size: 12px;
             color: rgb(96, 96, 96);
         }
@@ -99,10 +258,6 @@
             margin-top: 0;
             font-size: 12px;
             color: rgb(96, 96, 96);
-        }
-
-        .video-author {
-            margin-bottom: 4px;
         }
 
         .thumbnail-row {
@@ -119,7 +274,24 @@
 
 <body>
 
-    <input class="search-bar" type="text" placeholder="Search">
+    <button class="plus-button" onclick="openMaintenance()" aria-label="Create"></button>
+
+    <div class="maintenance-overlay" id="maintenanceOverlay">
+        <div class="maintenance-box">
+            <div class="maintenance-title">Under Maintenance</div>
+            <div class="maintenance-text">
+                This button is under maintenance.
+            </div>
+            <button class="maintenance-close" onclick="closeMaintenance()">Close</button>
+        </div>
+    </div>
+
+    <div class="search-container">
+        <input class="search-bar" type="text" placeholder="Search">
+        <button class="search-button" aria-label="Search">
+            <span class="search-icon"></span>
+        </button>
+    </div>
 
     <div class="video-preview">
         <div class="thumbnail-row">
@@ -168,8 +340,48 @@
             </p>
         </div>
     </div>
-    
+
+    <div class="video-preview">
+        <div class="thumbnail-row">
+            <img class="thumbnail" src="thumbnails/Tim.avif">
+        </div>
+
+        <div class="channel-pfp">
+            <img class="profile-pic" src="channel-pfp's/deb.webp">
+        </div>
+
+        <div class="video-info">
+            <p class="video-title">
+                I just pulled a Tim the Alien in Blacket
+            </p>
+
+            <p class="video-author">
+                Dares
+            </p>
+
+            <p class="video-stats">
+                8.3M views • 8 months ago
+            </p>
+        </div>
+    </div>
+
     <p class="version">Version 1.2</p>
+
+    <script>
+        function openMaintenance() {
+            document.getElementById("maintenanceOverlay").classList.add("show");
+        }
+
+        function closeMaintenance() {
+            document.getElementById("maintenanceOverlay").classList.remove("show");
+        }
+
+        document.getElementById("maintenanceOverlay").addEventListener("click", function(event) {
+            if (event.target === this) {
+                closeMaintenance();
+            }
+        });
+    </script>
 
 </body>
 </html>
