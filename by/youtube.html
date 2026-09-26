@@ -3,13 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Youtube/clone</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,400,0,0" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&display=swap"
+        rel="stylesheet"
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,400,0,0"
+        rel="stylesheet"
+    >
 
     <style>
         * {
@@ -214,7 +222,10 @@
 
         .video-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            grid-template-columns: repeat(
+                auto-fill,
+                minmax(280px, 1fr)
+            );
             gap: 28px 18px;
         }
 
@@ -312,6 +323,25 @@
             color: #606060;
         }
 
+        .rainbow-author {
+            background: linear-gradient(
+                90deg,
+                red,
+                orange,
+                yellow,
+                green,
+                cyan,
+                blue,
+                violet,
+                red
+            );
+            background-size: 400% 100%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent !important;
+            animation: rainbow 8s linear infinite;
+        }
+
         .no-results {
             display: none;
             text-align: center;
@@ -336,55 +366,6 @@
             font-size: 12px;
             color: #606060;
             z-index: 100;
-        }
-
-        .maintenance-overlay {
-            position: fixed;
-            inset: 0;
-            background: rgba(0, 0, 0, 0.35);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.2s ease;
-            z-index: 3000;
-        }
-
-        .maintenance-overlay.show {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .maintenance-box {
-            width: 320px;
-            padding: 25px;
-            background: white;
-            border-radius: 14px;
-            text-align: center;
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
-        }
-
-        .maintenance-title {
-            font-size: 22px;
-            font-weight: 600;
-            margin-bottom: 10px;
-        }
-
-        .maintenance-text {
-            font-size: 15px;
-            color: #606060;
-            margin-bottom: 20px;
-        }
-
-        .maintenance-close {
-            border: 0;
-            border-radius: 8px;
-            padding: 9px 22px;
-            background: #222;
-            color: white;
-            font-size: 14px;
-            cursor: pointer;
         }
 
         .watch-page {
@@ -417,7 +398,8 @@
             position: relative;
         }
 
-        .watch-video-container iframe {
+        .watch-video-container iframe,
+        .watch-video-container video {
             width: 100%;
             height: 100%;
             display: block;
@@ -482,7 +464,11 @@
             height: 210px;
             border-radius: 12px;
             overflow: hidden;
-            background: linear-gradient(120deg, #8a5cf6, #5d32bd);
+            background: linear-gradient(
+                120deg,
+                #8a5cf6,
+                #5d32bd
+            );
         }
 
         .channel-banner-pattern {
@@ -602,6 +588,134 @@
             font-size: 14px;
         }
 
+        .upload-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.45);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.2s ease;
+            z-index: 3000;
+            padding: 20px;
+        }
+
+        .upload-overlay.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .upload-box {
+            width: min(460px, 100%);
+            background: white;
+            border-radius: 14px;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
+            overflow: hidden;
+        }
+
+        .upload-header {
+            height: 62px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+            border-bottom: 1px solid #e5e5e5;
+        }
+
+        .upload-title {
+            font-size: 20px;
+            font-weight: 600;
+        }
+
+        .upload-close {
+            width: 36px;
+            height: 36px;
+            border: 0;
+            border-radius: 50%;
+            background: transparent;
+            font-size: 27px;
+            line-height: 36px;
+            color: #606060;
+            cursor: pointer;
+        }
+
+        .upload-close:hover {
+            background: #f2f2f2;
+        }
+
+        .upload-content {
+            padding: 22px;
+        }
+
+        .upload-label {
+            display: block;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #222;
+        }
+
+        .upload-file {
+            width: 100%;
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+
+        .upload-input {
+            width: 100%;
+            height: 44px;
+            border: 1px solid #c6c6c6;
+            border-radius: 8px;
+            padding: 0 13px;
+            font-size: 14px;
+            outline: none;
+            margin-bottom: 20px;
+        }
+
+        .upload-input:focus {
+            border-color: #1c62b9;
+        }
+
+        .rainbow-option {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            font-size: 14px;
+            cursor: pointer;
+            margin-bottom: 20px;
+        }
+
+        .rainbow-option input {
+            width: 17px;
+            height: 17px;
+            cursor: pointer;
+        }
+
+        .publish-button {
+            width: 100%;
+            height: 44px;
+            border: 0;
+            border-radius: 22px;
+            background: #0f0f0f;
+            color: white;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .publish-button:hover {
+            background: #272727;
+        }
+
+        .upload-error {
+            min-height: 18px;
+            color: #d93025;
+            font-size: 13px;
+            margin-bottom: 10px;
+        }
+
         @media (max-width: 900px) {
             .sidebar {
                 width: 80px;
@@ -691,7 +805,464 @@
                 gap: 12px;
             }
         }
-    </style>
+
+        /* Shorts */
+        .shorts-page {
+            display: none;
+            position: fixed;
+            inset: 70px 0 0 240px;
+            background: #0f0f0f;
+            z-index: 1200;
+            overflow: hidden;
+        }
+
+        .shorts-feed {
+            width: 100%;
+            height: 100%;
+            overflow-y: auto;
+            scroll-snap-type: y mandatory;
+            scrollbar-width: none;
+            overscroll-behavior-y: contain;
+        }
+
+        .shorts-feed::-webkit-scrollbar {
+            display: none;
+        }
+
+        .short-item {
+            position: relative;
+            width: 100%;
+            min-height: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            scroll-snap-align: start;
+            scroll-snap-stop: always;
+            background: #0f0f0f;
+        }
+
+        .short-video-wrap {
+            position: relative;
+            height: min(88vh, 900px);
+            aspect-ratio: 9 / 16;
+            max-width: calc(100% - 180px);
+            border-radius: 10px;
+            overflow: hidden;
+            background: #181818;
+        }
+
+        .short-video {
+            width: 100%;
+            height: 100%;
+            display: block;
+            border: 0;
+            object-fit: cover;
+            background: #000;
+        }
+
+        .short-gradient {
+            position: absolute;
+            inset: 45% 0 0;
+            pointer-events: none;
+            background: linear-gradient(transparent, rgba(0,0,0,.78));
+        }
+
+        .short-info {
+            position: absolute;
+            left: 18px;
+            right: 14px;
+            bottom: 18px;
+            color: #fff;
+            z-index: 3;
+            text-shadow: 0 1px 2px rgba(0,0,0,.6);
+        }
+
+        .short-channel {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 12px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .short-channel img {
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            object-fit: cover;
+            background: #444;
+        }
+
+        .short-follow {
+            border: 0;
+            border-radius: 18px;
+            padding: 7px 13px;
+            background: #fff;
+            color: #0f0f0f;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .short-title {
+            margin: 0 0 7px;
+            font-size: 15px;
+            line-height: 21px;
+            font-weight: 500;
+        }
+
+        .short-meta {
+            margin: 0;
+            font-size: 13px;
+            line-height: 18px;
+            opacity: .92;
+        }
+
+        .short-actions {
+            position: absolute;
+            left: calc(50% + min(22vw, 250px));
+            bottom: 28px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 18px;
+            z-index: 4;
+        }
+
+        .short-action {
+            width: 52px;
+            border: 0;
+            background: transparent;
+            color: #fff;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+            font-size: 12px;
+            text-shadow: 0 1px 3px rgba(0,0,0,.7);
+        }
+
+        .short-action-circle {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(39,39,39,.9);
+            transition: background .15s ease, transform .15s ease;
+        }
+
+        .short-action:hover .short-action-circle {
+            background: rgba(70,70,70,.95);
+            transform: scale(1.04);
+        }
+
+        .short-action.active .short-action-circle {
+            background: #fff;
+            color: #0f0f0f;
+        }
+
+        .short-action .material-symbols-rounded {
+            font-size: 25px;
+        }
+
+        .short-comments {
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            width: min(420px, 92vw);
+            background: #fff;
+            color: #0f0f0f;
+            z-index: 5000;
+            transform: translateX(100%);
+            transition: transform .2s ease;
+            box-shadow: -5px 0 24px rgba(0,0,0,.25);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .short-comments.open {
+            transform: translateX(0);
+        }
+
+        .comments-header {
+            height: 62px;
+            padding: 0 18px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid #e5e5e5;
+            flex-shrink: 0;
+        }
+
+        .comments-title {
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .comments-close {
+            width: 38px;
+            height: 38px;
+            border: 0;
+            border-radius: 50%;
+            background: transparent;
+            cursor: pointer;
+        }
+
+        .comments-close:hover {
+            background: #f2f2f2;
+        }
+
+        .comments-list {
+            flex: 1;
+            overflow-y: auto;
+            padding: 12px 18px 22px;
+        }
+
+        .comment {
+            display: flex;
+            gap: 11px;
+            margin: 15px 0;
+        }
+
+        .comment-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            object-fit: cover;
+            flex-shrink: 0;
+            background: #ddd;
+        }
+
+        .comment-body {
+            min-width: 0;
+        }
+
+        .comment-author {
+            font-size: 12px;
+            color: #606060;
+            margin-bottom: 3px;
+        }
+
+        .comment-text {
+            margin: 0;
+            font-size: 14px;
+            line-height: 19px;
+            word-break: break-word;
+        }
+
+        .comments-status {
+            padding: 22px;
+            text-align: center;
+            color: #606060;
+            font-size: 14px;
+        }
+
+        .shorts-close {
+            position: absolute;
+            top: 14px;
+            right: 18px;
+            width: 42px;
+            height: 42px;
+            border: 0;
+            border-radius: 50%;
+            background: rgba(39,39,39,.85);
+            color: #fff;
+            cursor: pointer;
+            z-index: 10;
+        }
+
+        .shorts-close:hover {
+            background: rgba(70,70,70,.95);
+        }
+
+        .shorts-loading {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 14px;
+            pointer-events: none;
+        }
+
+        @media (max-width: 900px) {
+            .shorts-page {
+                left: 80px;
+            }
+
+            .short-actions {
+                left: auto;
+                right: 12px;
+            }
+
+            .short-video-wrap {
+                max-width: calc(100% - 90px);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .shorts-page {
+                inset: 70px 0 0 0;
+            }
+
+            .short-video-wrap {
+                height: 100%;
+                max-width: none;
+                width: 100%;
+                border-radius: 0;
+            }
+
+            .short-actions {
+                right: 9px;
+                bottom: 24px;
+                gap: 14px;
+            }
+
+            .short-action {
+                width: 48px;
+            }
+
+            .short-action-circle {
+                width: 44px;
+                height: 44px;
+            }
+
+            .short-info {
+                left: 14px;
+                right: 68px;
+                bottom: 20px;
+            }
+        }
+
+    
+/* BlueTube Shorts header */
+.shorts-topbar{
+    position:fixed;
+    top:0;
+    left:0;
+    right:0;
+    height:64px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 18px;
+    z-index:10020;
+    background:rgba(15,15,15,.96);
+    color:#fff;
+    box-sizing:border-box;
+}
+.shorts-back{
+    width:44px;
+    height:44px;
+    border:0;
+    border-radius:50%;
+    background:transparent;
+    color:#fff;
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    transition:background .15s ease;
+}
+.shorts-back:hover{background:#272727}
+.shorts-back-arrow{
+    font-size:38px;
+    line-height:1;
+    font-family:Arial,sans-serif;
+    font-weight:300;
+    transform:translateY(-2px);
+}
+.shorts-brand{
+    position:absolute;
+    left:50%;
+    transform:translateX(-50%);
+    display:flex;
+    align-items:center;
+    gap:8px;
+    font-size:20px;
+    font-weight:700;
+    letter-spacing:-.4px;
+    white-space:nowrap;
+}
+.shorts-brand-mark{
+    width:29px;
+    height:29px;
+    border-radius:7px;
+    background:#fff;
+    color:#111;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:19px;
+    font-weight:800;
+    font-family:Arial,sans-serif;
+}
+.shorts-top-actions{
+    margin-left:auto;
+    display:flex;
+    align-items:center;
+    gap:4px;
+}
+.shorts-top-button{
+    width:42px;
+    height:42px;
+    border:0;
+    border-radius:50%;
+    background:transparent;
+    color:#fff;
+    cursor:pointer;
+    font-size:27px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+.shorts-top-button:hover{background:#272727}
+.shorts-page{
+    padding-top:64px !important;
+}
+.shorts-page .shorts-feed{
+    padding-top:8px !important;
+}
+.shorts-close{
+    display:none !important;
+}
+@media(max-width:700px){
+    .shorts-topbar{
+        height:56px;
+        padding:0 10px;
+    }
+    .shorts-page{
+        padding-top:56px !important;
+    }
+    .shorts-brand{
+        font-size:18px;
+    }
+    .shorts-brand-mark{
+        width:27px;
+        height:27px;
+        font-size:18px;
+    }
+    .shorts-top-button{
+        width:40px;
+        height:40px;
+    }
+}
+
+
+.shorts-sidebar-b{
+    font-size:16px !important;
+    font-weight:800 !important;
+    font-family:Arial,sans-serif !important;
+}
+
+</style>
 </head>
 
 <body>
@@ -700,7 +1271,10 @@
 
         <div class="top-bar">
 
-            <button class="profile-button" onclick="openChannel()">
+            <button
+                class="profile-button"
+                onclick="openChannel()"
+            >
                 <img
                     class="profile-picture"
                     src="channel-pfp's/prismpfp.jpg"
@@ -732,7 +1306,7 @@
 
             <button
                 class="plus-button"
-                onclick="openMaintenance()"
+                onclick="openUpload()"
                 aria-label="Create"
             ></button>
 
@@ -742,18 +1316,34 @@
 
             <div class="sidebar-section">
 
-                <button class="sidebar-item active" onclick="selectSidebar(this)">
-                    <span class="material-symbols-rounded">home</span>
+                <button
+                    class="sidebar-item active"
+                    onclick="closeShorts(); selectSidebar(this)"
+                >
+                    <span class="material-symbols-rounded">
+                        home
+                    </span>
                     <span>Home</span>
                 </button>
 
-                <button class="sidebar-item" onclick="selectSidebar(this)">
-                    <span class="material-symbols-rounded">smart_display</span>
+                <button
+                    class="sidebar-item"
+                    id="shortsSidebarButton"
+                    onclick="openShorts(this)"
+                >
+                    <span class="material-symbols-rounded">
+                        smart_display
+                    </span>
                     <span>Shorts</span>
                 </button>
 
-                <button class="sidebar-item" onclick="selectSidebar(this)">
-                    <span class="material-symbols-rounded">subscriptions</span>
+                <button
+                    class="sidebar-item"
+                    onclick="selectSidebar(this)"
+                >
+                    <span class="material-symbols-rounded">
+                        subscriptions
+                    </span>
                     <span>Subscriptions</span>
                 </button>
 
@@ -765,28 +1355,53 @@
                     You
                 </div>
 
-                <button class="sidebar-item" onclick="openChannel()">
-                    <span class="material-symbols-rounded">account_circle</span>
+                <button
+                    class="sidebar-item"
+                    onclick="openChannel()"
+                >
+                    <span class="material-symbols-rounded">
+                        account_circle
+                    </span>
                     <span>Your channel</span>
                 </button>
 
-                <button class="sidebar-item" onclick="selectSidebar(this)">
-                    <span class="material-symbols-rounded">history</span>
+                <button
+                    class="sidebar-item"
+                    onclick="selectSidebar(this)"
+                >
+                    <span class="material-symbols-rounded">
+                        history
+                    </span>
                     <span>History</span>
                 </button>
 
-                <button class="sidebar-item" onclick="selectSidebar(this)">
-                    <span class="material-symbols-rounded">playlist_play</span>
+                <button
+                    class="sidebar-item"
+                    onclick="selectSidebar(this)"
+                >
+                    <span class="material-symbols-rounded">
+                        playlist_play
+                    </span>
                     <span>Playlists</span>
                 </button>
 
-                <button class="sidebar-item" onclick="selectSidebar(this)">
-                    <span class="material-symbols-rounded">schedule</span>
+                <button
+                    class="sidebar-item"
+                    onclick="selectSidebar(this)"
+                >
+                    <span class="material-symbols-rounded">
+                        schedule
+                    </span>
                     <span>Watch later</span>
                 </button>
 
-                <button class="sidebar-item" onclick="selectSidebar(this)">
-                    <span class="material-symbols-rounded">thumb_up</span>
+                <button
+                    class="sidebar-item"
+                    onclick="selectSidebar(this)"
+                >
+                    <span class="material-symbols-rounded">
+                        thumb_up
+                    </span>
                     <span>Liked videos</span>
                 </button>
 
@@ -798,28 +1413,53 @@
                     Explore
                 </div>
 
-                <button class="sidebar-item" onclick="selectSidebar(this)">
-                    <span class="material-symbols-rounded">local_fire_department</span>
+                <button
+                    class="sidebar-item"
+                    onclick="selectSidebar(this)"
+                >
+                    <span class="material-symbols-rounded">
+                        local_fire_department
+                    </span>
                     <span>Trending</span>
                 </button>
 
-                <button class="sidebar-item" onclick="selectSidebar(this)">
-                    <span class="material-symbols-rounded">music_note</span>
+                <button
+                    class="sidebar-item"
+                    onclick="selectSidebar(this)"
+                >
+                    <span class="material-symbols-rounded">
+                        music_note
+                    </span>
                     <span>Music</span>
                 </button>
 
-                <button class="sidebar-item" onclick="selectSidebar(this)">
-                    <span class="material-symbols-rounded">movie</span>
+                <button
+                    class="sidebar-item"
+                    onclick="selectSidebar(this)"
+                >
+                    <span class="material-symbols-rounded">
+                        movie
+                    </span>
                     <span>Movies</span>
                 </button>
 
-                <button class="sidebar-item" onclick="selectSidebar(this)">
-                    <span class="material-symbols-rounded">sensors</span>
+                <button
+                    class="sidebar-item"
+                    onclick="selectSidebar(this)"
+                >
+                    <span class="material-symbols-rounded">
+                        sensors
+                    </span>
                     <span>Live</span>
                 </button>
 
-                <button class="sidebar-item" onclick="selectSidebar(this)">
-                    <span class="material-symbols-rounded">sports_esports</span>
+                <button
+                    class="sidebar-item"
+                    onclick="selectSidebar(this)"
+                >
+                    <span class="material-symbols-rounded">
+                        sports_esports
+                    </span>
                     <span>Gaming</span>
                 </button>
 
@@ -838,7 +1478,10 @@
 
         <main class="home-page">
 
-            <div class="video-grid" id="videoGrid">
+            <div
+                class="video-grid"
+                id="videoGrid"
+            >
 
                 <div
                     class="video-preview"
@@ -853,21 +1496,25 @@
                 >
 
                     <div class="thumbnail-wrapper">
+
                         <img
                             class="thumbnail"
                             src="thumbnails/thumbnail.avif"
                             alt="Minecraft Features Nobody Uses"
                         >
+
                     </div>
 
                     <div class="video-details">
 
                         <div class="channel-pfp">
+
                             <img
                                 class="video-channel-picture"
                                 src="channel-pfp's/prismpfp.jpg"
                                 alt="PrismBlock"
                             >
+
                         </div>
 
                         <div class="video-info">
@@ -903,21 +1550,25 @@
                 >
 
                     <div class="thumbnail-wrapper">
+
                         <img
                             class="thumbnail"
                             src="thumbnails/caldruki.avif"
                             alt="Stupidest Kid Comments"
                         >
+
                     </div>
 
                     <div class="video-details">
 
                         <div class="channel-pfp">
+
                             <img
                                 class="video-channel-picture"
                                 src="channel-pfp's/caldruki.jpg"
                                 alt="Caldruki"
                             >
+
                         </div>
 
                         <div class="video-info">
@@ -953,21 +1604,25 @@
                 >
 
                     <div class="thumbnail-wrapper">
+
                         <img
                             class="thumbnail"
                             src="thumbnails/Tim.avif"
                             alt="I just pulled a Tim the Alien in Blacket"
                         >
+
                     </div>
 
                     <div class="video-details">
 
                         <div class="channel-pfp">
+
                             <img
                                 class="video-channel-picture"
                                 src="channel-pfp's/deb.webp"
                                 alt="Dares"
                             >
+
                         </div>
 
                         <div class="video-info">
@@ -992,7 +1647,11 @@
 
             </div>
 
-            <div class="no-results" id="noResults">
+            <div
+                class="no-results"
+                id="noResults"
+            >
+
                 <div class="no-results-title">
                     No results found
                 </div>
@@ -1000,19 +1659,49 @@
                 <div class="no-results-text">
                     Try searching for another video or channel.
                 </div>
+
             </div>
 
         </main>
 
         <p class="version">
-            Version 1.7
+            Version 1.8
         </p>
 
     </div>
 
-    <div class="watch-page" id="watchPage">
 
-        <button class="watch-back" onclick="closeVideo()">
+    <section class="shorts-page" id="shortsPage">
+        <button class="shorts-close" onclick="closeShorts()" aria-label="Close Shorts">
+            <span class="material-symbols-rounded">close</span>
+        </button>
+
+        <div class="shorts-feed" id="shortsFeed">
+            <div class="shorts-loading" id="shortsLoading">Loading Shorts...</div>
+        </div>
+
+        <aside class="short-comments" id="shortComments">
+            <div class="comments-header">
+                <div class="comments-title" id="commentsTitle">Comments</div>
+                <button class="comments-close" onclick="closeComments()" aria-label="Close comments">
+                    <span class="material-symbols-rounded">close</span>
+                </button>
+            </div>
+            <div class="comments-list" id="commentsList">
+                <div class="comments-status">Select a Short to view comments.</div>
+            </div>
+        </aside>
+    </section>
+
+    <div
+        class="watch-page"
+        id="watchPage"
+    >
+
+        <button
+            class="watch-back"
+            onclick="closeVideo()"
+        >
             Back
         </button>
 
@@ -1029,17 +1718,29 @@
 
         </div>
 
-        <h1 class="watch-title" id="watchTitle"></h1>
+        <h1
+            class="watch-title"
+            id="watchTitle"
+        ></h1>
 
-        <p class="watch-channel" id="watchChannel"></p>
+        <p
+            class="watch-channel"
+            id="watchChannel"
+        ></p>
 
     </div>
 
-    <div class="channel-page" id="channelPage">
+    <div
+        class="channel-page"
+        id="channelPage"
+    >
 
         <div class="channel-top-bar">
 
-            <button class="channel-back" onclick="closeChannel()">
+            <button
+                class="channel-back"
+                onclick="closeChannel()"
+            >
                 Back
             </button>
 
@@ -1132,24 +1833,92 @@
 
     </div>
 
-    <div class="maintenance-overlay" id="maintenanceOverlay">
+    <div
+        class="upload-overlay"
+        id="uploadOverlay"
+    >
 
-        <div class="maintenance-box">
+        <div class="upload-box">
 
-            <div class="maintenance-title">
-                Under Maintenance
+            <div class="upload-header">
+
+                <div class="upload-title">
+                    Upload video
+                </div>
+
+                <button
+                    class="upload-close"
+                    onclick="closeUpload()"
+                    aria-label="Close"
+                >
+                    ×
+                </button>
+
             </div>
 
-            <div class="maintenance-text">
-                This button is under maintenance.
-            </div>
+            <div class="upload-content">
 
-            <button
-                class="maintenance-close"
-                onclick="closeMaintenance()"
-            >
-                Close
-            </button>
+                <label class="upload-label">
+                    Video file
+                </label>
+
+                <input
+                    id="videoFile"
+                    class="upload-file"
+                    type="file"
+                    accept="video/*"
+                >
+
+                <label class="upload-label">
+                    Video name
+                </label>
+
+                <input
+                    id="videoName"
+                    class="upload-input"
+                    type="text"
+                    maxlength="100"
+                    placeholder="Enter video name"
+                    autocomplete="off"
+                >
+
+                <label class="upload-label">
+                    Channel name
+                </label>
+
+                <input
+                    id="channelName"
+                    class="upload-input"
+                    type="text"
+                    maxlength="30"
+                    placeholder="Enter channel name"
+                    autocomplete="off"
+                >
+
+                <label class="rainbow-option">
+
+                    <input
+                        id="rainbowName"
+                        type="checkbox"
+                    >
+
+                    <span>Rainbow channel name</span>
+
+                </label>
+
+                <div
+                    class="upload-error"
+                    id="uploadError"
+                ></div>
+
+                <button
+                    class="publish-button"
+                    onclick="publishVideo()"
+                >
+                    Publish
+                </button>
+
+            </div>
 
         </div>
 
@@ -1158,101 +1927,229 @@
     <script>
         let currentVideoId = "";
 
-        function openMaintenance() {
+        function openUpload() {
             document
-                .getElementById("maintenanceOverlay")
+                .getElementById("uploadOverlay")
                 .classList.add("show");
+
+            document
+                .getElementById("uploadError")
+                .textContent = "";
         }
 
-        function closeMaintenance() {
+        function closeUpload() {
             document
-                .getElementById("maintenanceOverlay")
+                .getElementById("uploadOverlay")
                 .classList.remove("show");
         }
 
         function openChannel() {
             document.getElementById("homePage").style.display = "none";
+
             document.getElementById("watchPage").style.display = "none";
+
             document.getElementById("channelPage").style.display = "block";
 
-            document.getElementById("youtubePlayer").src = "";
+            const player =
+                document.getElementById("youtubePlayer");
+
+            player.src = "";
 
             window.scrollTo(0, 0);
         }
 
         function closeChannel() {
             document.getElementById("channelPage").style.display = "none";
+
             document.getElementById("watchPage").style.display = "none";
+
             document.getElementById("homePage").style.display = "block";
 
             window.scrollTo(0, 0);
         }
 
-        function openVideo(videoId, title, channel, stats) {
+        function openVideo(
+            videoId,
+            title,
+            channel,
+            stats
+        ) {
             currentVideoId = videoId;
 
             document.getElementById("homePage").style.display = "none";
+
             document.getElementById("channelPage").style.display = "none";
+
             document.getElementById("watchPage").style.display = "block";
 
-            const player = document.getElementById("youtubePlayer");
+            const container =
+                document.querySelector(
+                    ".watch-video-container"
+                );
+
+            container.innerHTML = "";
+
+            const player =
+                document.createElement("iframe");
+
+            player.id = "youtubePlayer";
 
             player.src =
                 "https://www.youtube.com/embed/" +
                 encodeURIComponent(videoId) +
                 "?autoplay=1&rel=0";
 
-            document.getElementById("watchTitle").textContent = title;
+            player.title =
+                "YouTube video player";
 
-            document.getElementById("watchChannel").textContent =
+            player.referrerPolicy =
+                "strict-origin-when-cross-origin";
+
+            player.allow =
+                "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
+
+            player.allowFullscreen = true;
+
+            container.appendChild(player);
+
+            document.getElementById(
+                "watchTitle"
+            ).textContent = title;
+
+            document.getElementById(
+                "watchChannel"
+            ).textContent =
                 channel + " • " + stats;
 
             window.scrollTo(0, 0);
         }
 
-        function watchOnYouTube() {
-            if (!currentVideoId) {
-                return;
-            }
+        function openUploadedVideo(
+            videoUrl,
+            title,
+            channel
+        ) {
+            document.getElementById(
+                "homePage"
+            ).style.display = "none";
 
-            window.open(
-                "https://www.youtube.com/watch?v=" +
-                encodeURIComponent(currentVideoId),
-                "_blank",
-                "noopener"
-            );
+            document.getElementById(
+                "channelPage"
+            ).style.display = "none";
+
+            document.getElementById(
+                "watchPage"
+            ).style.display = "block";
+
+            const container =
+                document.querySelector(
+                    ".watch-video-container"
+                );
+
+            container.innerHTML = "";
+
+            const video =
+                document.createElement("video");
+
+            video.src = videoUrl;
+
+            video.controls = true;
+
+            video.autoplay = true;
+
+            video.playsInline = true;
+
+            video.style.width = "100%";
+
+            video.style.height = "100%";
+
+            video.style.display = "block";
+
+            container.appendChild(video);
+
+            document.getElementById(
+                "watchTitle"
+            ).textContent = title;
+
+            document.getElementById(
+                "watchChannel"
+            ).textContent =
+                channel + " • 0 views • Just now";
+
+            window.scrollTo(0, 0);
         }
 
         function closeVideo() {
-            document.getElementById("youtubePlayer").src = "";
+            const container =
+                document.querySelector(
+                    ".watch-video-container"
+                );
 
-            document.getElementById("watchPage").style.display = "none";
-            document.getElementById("channelPage").style.display = "none";
-            document.getElementById("homePage").style.display = "block";
+            container.innerHTML = `
+                <iframe
+                    id="youtubePlayer"
+                    src=""
+                    title="YouTube video player"
+                    referrerpolicy="strict-origin-when-cross-origin"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowfullscreen>
+                </iframe>
+            `;
+
+            document.getElementById(
+                "watchPage"
+            ).style.display = "none";
+
+            document.getElementById(
+                "channelPage"
+            ).style.display = "none";
+
+            document.getElementById(
+                "homePage"
+            ).style.display = "block";
 
             window.scrollTo(0, 0);
         }
 
         function subscribe() {
             const button =
-                document.querySelector(".subscribe-button");
+                document.querySelector(
+                    ".subscribe-button"
+                );
 
-            if (button.textContent.trim() === "Subscribe") {
-                button.textContent = "Subscribed";
-                button.style.background = "#e5e5e5";
-                button.style.color = "#0f0f0f";
+            if (
+                button.textContent.trim() ===
+                "Subscribe"
+            ) {
+                button.textContent =
+                    "Subscribed";
+
+                button.style.background =
+                    "#e5e5e5";
+
+                button.style.color =
+                    "#0f0f0f";
             } else {
-                button.textContent = "Subscribe";
-                button.style.background = "#0f0f0f";
-                button.style.color = "white";
+                button.textContent =
+                    "Subscribe";
+
+                button.style.background =
+                    "#0f0f0f";
+
+                button.style.color =
+                    "white";
             }
         }
 
         function selectSidebar(button) {
             document
-                .querySelectorAll(".sidebar-item")
+                .querySelectorAll(
+                    ".sidebar-item"
+                )
                 .forEach(function(item) {
-                    item.classList.remove("active");
+                    item.classList.remove(
+                        "active"
+                    );
                 });
 
             button.classList.add("active");
@@ -1261,25 +2158,33 @@
         function searchVideos() {
             const search =
                 document
-                    .getElementById("searchInput")
+                    .getElementById(
+                        "searchInput"
+                    )
                     .value
                     .toLowerCase()
                     .trim();
 
             const videos =
-                document.querySelectorAll(".video-preview");
+                document.querySelectorAll(
+                    ".video-preview"
+                );
 
             let visibleVideos = 0;
 
             videos.forEach(function(video) {
                 const title =
                     video
-                        .getAttribute("data-title")
+                        .getAttribute(
+                            "data-title"
+                        )
                         .toLowerCase();
 
                 const author =
                     video
-                        .getAttribute("data-author")
+                        .getAttribute(
+                            "data-author"
+                        )
                         .toLowerCase();
 
                 const matches =
@@ -1295,29 +2200,769 @@
                 }
             });
 
-            document.getElementById("noResults").style.display =
-                visibleVideos === 0 ? "block" : "none";
+            document.getElementById(
+                "noResults"
+            ).style.display =
+                visibleVideos === 0
+                    ? "block"
+                    : "none";
+        }
+
+        function publishVideo() {
+            const fileInput =
+                document.getElementById(
+                    "videoFile"
+                );
+
+            const videoName =
+                document
+                    .getElementById(
+                        "videoName"
+                    )
+                    .value
+                    .trim();
+
+            const channelName =
+                document
+                    .getElementById(
+                        "channelName"
+                    )
+                    .value
+                    .trim();
+
+            const rainbow =
+                document.getElementById(
+                    "rainbowName"
+                ).checked;
+
+            const error =
+                document.getElementById(
+                    "uploadError"
+                );
+
+            error.textContent = "";
+
+            if (!fileInput.files.length) {
+                error.textContent =
+                    "Please select a video.";
+
+                return;
+            }
+
+            if (!videoName) {
+                error.textContent =
+                    "Please enter a video name.";
+
+                return;
+            }
+
+            if (!channelName) {
+                error.textContent =
+                    "Please enter a channel name.";
+
+                return;
+            }
+
+            const file =
+                fileInput.files[0];
+
+            if (!file.type.startsWith("video/")) {
+                error.textContent =
+                    "Please select a video file.";
+
+                return;
+            }
+
+            const videoUrl =
+                URL.createObjectURL(file);
+
+            const video =
+                document.createElement("div");
+
+            video.className =
+                "video-preview";
+
+            video.setAttribute(
+                "data-title",
+                videoName
+            );
+
+            video.setAttribute(
+                "data-author",
+                channelName
+            );
+
+            video.onclick = function() {
+                openUploadedVideo(
+                    videoUrl,
+                    videoName,
+                    channelName
+                );
+            };
+
+            const thumbnail =
+                document.createElement("div");
+
+            thumbnail.className =
+                "thumbnail-wrapper";
+
+            const player =
+                document.createElement("video");
+
+            player.className =
+                "thumbnail";
+
+            player.src = videoUrl;
+
+            player.muted = true;
+
+            player.preload = "metadata";
+
+            player.controls = false;
+
+            thumbnail.appendChild(player);
+
+            const details =
+                document.createElement("div");
+
+            details.className =
+                "video-details";
+
+            const pfp =
+                document.createElement("div");
+
+            pfp.className =
+                "channel-pfp";
+
+            const pfpImage =
+                document.createElement("img");
+
+            pfpImage.className =
+                "video-channel-picture";
+
+            pfpImage.src =
+                "channel-pfp's/prismpfp.jpg";
+
+            pfpImage.alt =
+                channelName;
+
+            pfp.appendChild(pfpImage);
+
+            const info =
+                document.createElement("div");
+
+            info.className =
+                "video-info";
+
+            const title =
+                document.createElement("p");
+
+            title.className =
+                "video-title";
+
+            title.textContent =
+                videoName;
+
+            const author =
+                document.createElement("p");
+
+            author.className =
+                "video-author";
+
+            author.textContent =
+                channelName;
+
+            if (rainbow) {
+                author.classList.add(
+                    "rainbow-author"
+                );
+            }
+
+            const stats =
+                document.createElement("p");
+
+            stats.className =
+                "video-stats";
+
+            stats.textContent =
+                "0 views • Just now";
+
+            info.appendChild(title);
+
+            info.appendChild(author);
+
+            info.appendChild(stats);
+
+            details.appendChild(pfp);
+
+            details.appendChild(info);
+
+            video.appendChild(thumbnail);
+
+            video.appendChild(details);
+
+            document
+                .getElementById("videoGrid")
+                .prepend(video);
+
+            closeUpload();
+
+            fileInput.value = "";
+
+            document.getElementById(
+                "videoName"
+            ).value = "";
+
+            document.getElementById(
+                "channelName"
+            ).value = "";
+
+            document.getElementById(
+                "rainbowName"
+            ).checked = false;
+
+            searchVideos();
         }
 
         document
             .getElementById("searchInput")
-            .addEventListener("input", searchVideos);
+            .addEventListener(
+                "input",
+                searchVideos
+            );
 
         document
             .getElementById("searchInput")
-            .addEventListener("keydown", function(event) {
-                if (event.key === "Enter") {
-                    searchVideos();
+            .addEventListener(
+                "keydown",
+                function(event) {
+                    if (event.key === "Enter") {
+                        searchVideos();
+                    }
                 }
-            });
+            );
 
         document
-            .getElementById("maintenanceOverlay")
-            .addEventListener("click", function(event) {
-                if (event.target === this) {
-                    closeMaintenance();
+            .getElementById("uploadOverlay")
+            .addEventListener(
+                "click",
+                function(event) {
+                    if (event.target === this) {
+                        closeUpload();
+                    }
                 }
+            );
+
+        document.addEventListener(
+            "keydown",
+            function(event) {
+                if (
+                    event.key === "Escape" &&
+                    document
+                        .getElementById(
+                            "uploadOverlay"
+                        )
+                        .classList.contains("show")
+                ) {
+                    closeUpload();
+                }
+            }
+        );
+
+        const YOUTUBE_API_KEY = "AIzaSyDDVkvKaJIDPbbo1pxndJBJiCxc8ja3n9c";
+        let shortsItems = [];
+        let currentShortIndex = 0;
+        let shortsObserver = null;
+        let commentsVideoId = "";
+
+        function setMainPage(page) {
+            document.getElementById("homePage").style.display = page === "home" ? "block" : "none";
+            document.getElementById("watchPage").style.display = page === "watch" ? "block" : "none";
+            document.getElementById("channelPage").style.display = page === "channel" ? "block" : "none";
+            document.getElementById("shortsPage").style.display = page === "shorts" ? "block" : "none";
+        }
+
+        async function openShorts(button) {
+            document.querySelectorAll(".sidebar-item").forEach(function(item) {
+                item.classList.remove("active");
             });
+
+            if (button) {
+                button.classList.add("active");
+            }
+
+            document.getElementById("homePage").style.display = "none";
+            document.getElementById("watchPage").style.display = "none";
+            document.getElementById("channelPage").style.display = "none";
+            document.getElementById("shortsPage").style.display = "block";
+
+            window.scrollTo(0, 0);
+
+            if (!shortsItems.length) {
+                await loadShorts();
+            }
+        }
+
+        function closeShorts() {
+            document.getElementById("shortsPage").style.display = "none";
+            document.getElementById("watchPage").style.display = "none";
+            document.getElementById("channelPage").style.display = "none";
+            document.getElementById("homePage").style.display = "block";
+
+            document.querySelectorAll(".sidebar-item").forEach(function(item) {
+                item.classList.remove("active");
+            });
+
+            const homeButton = document.querySelector(".sidebar-item");
+            if (homeButton) {
+                homeButton.classList.add("active");
+            }
+
+            stopAllShorts();
+            closeComments();
+        }
+
+        function stopAllShorts() {
+            document.querySelectorAll(".short-video").forEach(function(video) {
+                video.pause();
+            });
+        }
+
+        async function loadShorts() {
+            const feed = document.getElementById("shortsFeed");
+            const loading = document.getElementById("shortsLoading");
+
+            loading.style.display = "flex";
+
+            try {
+                const url =
+                    "https://www.googleapis.com/youtube/v3/search" +
+                    "?part=snippet" +
+                    "&type=video" +
+                    "&videoDuration=short" +
+                    "&maxResults=15" +
+                    "&q=shorts" +
+                    "&key=" + encodeURIComponent(YOUTUBE_API_KEY);
+
+                const response = await fetch(url);
+
+                if (!response.ok) {
+                    const errorData = await response.json().catch(function() {
+                        return {};
+                    });
+
+                    throw new Error(
+                        errorData.error &&
+                        errorData.error.message
+                            ? errorData.error.message
+                            : "YouTube API request failed."
+                    );
+                }
+
+                const data = await response.json();
+
+                if (!data.items || !data.items.length) {
+                    throw new Error("No Shorts were returned.");
+                }
+
+                const ids = data.items
+                    .map(function(item) {
+                        return item.id && item.id.videoId;
+                    })
+                    .filter(Boolean);
+
+                const detailsUrl =
+                    "https://www.googleapis.com/youtube/v3/videos" +
+                    "?part=snippet,statistics,contentDetails" +
+                    "&id=" + encodeURIComponent(ids.join(",")) +
+                    "&key=" + encodeURIComponent(YOUTUBE_API_KEY);
+
+                const detailsResponse = await fetch(detailsUrl);
+
+                if (!detailsResponse.ok) {
+                    throw new Error("Could not load Short details.");
+                }
+
+                const details = await detailsResponse.json();
+
+                shortsItems = (details.items || []).filter(function(item) {
+                    const duration = item.contentDetails &&
+                        item.contentDetails.duration
+                        ? item.contentDetails.duration
+                        : "";
+
+                    return isShortDuration(duration);
+                });
+
+                if (!shortsItems.length) {
+                    shortsItems = details.items || [];
+                }
+
+                renderShorts();
+            } catch (error) {
+                loading.style.display = "none";
+                feed.innerHTML = `
+                    <div class="shorts-loading" style="padding:30px;text-align:center;">
+                        Could not load Shorts.<br>
+                        <span style="font-size:12px;opacity:.7;">${escapeHtml(error.message)}</span>
+                    </div>
+                `;
+            }
+        }
+
+        function isShortDuration(duration) {
+            const match = duration.match(
+                /PT(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?/
+            );
+
+            if (!match) {
+                return false;
+            }
+
+            const hours = Number(match[1] || 0);
+            const minutes = Number(match[2] || 0);
+            const seconds = Number(match[3] || 0);
+
+            return hours === 0 && (minutes === 0 || minutes < 1) && seconds <= 180;
+        }
+
+        function renderShorts() {
+            const feed = document.getElementById("shortsFeed");
+            feed.innerHTML = "";
+
+            shortsItems.forEach(function(item, index) {
+                const snippet = item.snippet || {};
+                const statistics = item.statistics || {};
+                const videoId = item.id;
+
+                const title = snippet.title || "Short";
+                const channel = snippet.channelTitle || "YouTube creator";
+                const thumbnail =
+                    snippet.thumbnails &&
+                    (snippet.thumbnails.high ||
+                     snippet.thumbnails.medium ||
+                     snippet.thumbnails.default);
+
+                const thumbnailUrl = thumbnail ? thumbnail.url : "";
+
+                const article = document.createElement("article");
+                article.className = "short-item";
+                article.dataset.index = String(index);
+                article.dataset.videoId = videoId;
+
+                article.innerHTML = `
+                    <div class="short-video-wrap">
+                        <iframe
+                            class="short-video"
+                            data-video-id="${escapeHtml(videoId)}"
+                            title="${escapeHtml(title)}"
+                            src="https://www.youtube.com/embed/${encodeURIComponent(videoId)}?enablejsapi=1&autoplay=0&mute=0&controls=1&rel=0&playsinline=1"
+                            referrerpolicy="strict-origin-when-cross-origin"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            allowfullscreen>
+                        </iframe>
+
+                        <div class="short-gradient"></div>
+
+                        <div class="short-info">
+                            <div class="short-channel">
+                                <img
+                                    src="${escapeHtml(thumbnailUrl)}"
+                                    alt=""
+                                    onerror="this.style.visibility='hidden'"
+                                >
+                                <span>${escapeHtml(channel)}</span>
+                                <button class="short-follow" onclick="event.stopPropagation(); toggleShortFollow(this)">
+                                    Subscribe
+                                </button>
+                            </div>
+
+                            <h2 class="short-title">${escapeHtml(title)}</h2>
+                            <p class="short-meta">
+                                ${formatNumber(statistics.viewCount || 0)} views
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="short-actions">
+                        <button class="short-action" onclick="toggleShortLike(this)" aria-label="Like">
+                            <span class="short-action-circle">
+                                <span class="material-symbols-rounded">thumb_up</span>
+                            </span>
+                            <span>${formatNumber(statistics.likeCount || 0)}</span>
+                        </button>
+
+                        <button class="short-action" onclick="toggleShortDislike(this)" aria-label="Dislike">
+                            <span class="short-action-circle">
+                                <span class="material-symbols-rounded">thumb_down</span>
+                            </span>
+                            <span>Dislike</span>
+                        </button>
+
+                        <button class="short-action" onclick="openComments('${escapeHtml(videoId)}', '${escapeHtml(title)}')" aria-label="Comments">
+                            <span class="short-action-circle">
+                                <span class="material-symbols-rounded">comment</span>
+                            </span>
+                            <span>Comments</span>
+                        </button>
+
+                        <button class="short-action" onclick="shareShort('${escapeHtml(videoId)}')" aria-label="Share">
+                            <span class="short-action-circle">
+                                <span class="material-symbols-rounded">share</span>
+                            </span>
+                            <span>Share</span>
+                        </button>
+                    </div>
+                `;
+
+                feed.appendChild(article);
+            });
+
+            const loading = document.getElementById("shortsLoading");
+            if (loading) {
+                loading.style.display = "none";
+            }
+
+            setupShortObserver();
+        }
+
+        function setupShortObserver() {
+            if (shortsObserver) {
+                shortsObserver.disconnect();
+            }
+
+            const items = document.querySelectorAll(".short-item");
+
+            shortsObserver = new IntersectionObserver(
+                function(entries) {
+                    entries.forEach(function(entry) {
+                        if (!entry.isIntersecting || entry.intersectionRatio < 0.7) {
+                            return;
+                        }
+
+                        const item = entry.target;
+                        currentShortIndex = Number(item.dataset.index || 0);
+
+                        document.querySelectorAll(".short-item").forEach(function(other) {
+                            const iframe = other.querySelector(".short-video");
+
+                            if (!iframe || !iframe.contentWindow) {
+                                return;
+                            }
+
+                            if (other === item) {
+                                postYouTubeCommand(iframe, "playVideo");
+                            } else {
+                                postYouTubeCommand(iframe, "pauseVideo");
+                            }
+                        });
+                    });
+                },
+                {
+                    root: document.getElementById("shortsFeed"),
+                    threshold: [0.7]
+                }
+            );
+
+            items.forEach(function(item) {
+                shortsObserver.observe(item);
+            });
+        }
+
+        function postYouTubeCommand(iframe, command) {
+            try {
+                iframe.contentWindow.postMessage(
+                    JSON.stringify({
+                        event: "command",
+                        func: command,
+                        args: []
+                    }),
+                    "https://www.youtube.com"
+                );
+            } catch (error) {
+                // Ignore iframe command errors.
+            }
+        }
+
+        function toggleShortLike(button) {
+            button.classList.toggle("active");
+        }
+
+        function toggleShortDislike(button) {
+            button.classList.toggle("active");
+        }
+
+        function toggleShortFollow(button) {
+            if (button.textContent.trim() === "Subscribe") {
+                button.textContent = "Subscribed";
+                button.style.background = "#272727";
+                button.style.color = "#fff";
+            } else {
+                button.textContent = "Subscribe";
+                button.style.background = "#fff";
+                button.style.color = "#0f0f0f";
+            }
+        }
+
+        async function shareShort(videoId) {
+            const url = "https://www.youtube.com/shorts/" + videoId;
+
+            if (navigator.share) {
+                try {
+                    await navigator.share({
+                        title: "YouTube Short",
+                        url: url
+                    });
+                    return;
+                } catch (error) {
+                    if (error.name === "AbortError") {
+                        return;
+                    }
+                }
+            }
+
+            try {
+                await navigator.clipboard.writeText(url);
+                alert("Short link copied.");
+            } catch (error) {
+                prompt("Copy this link:", url);
+            }
+        }
+
+        async function openComments(videoId, title) {
+            commentsVideoId = videoId;
+            document.getElementById("commentsTitle").textContent = "Comments";
+            document.getElementById("shortComments").classList.add("open");
+
+            const list = document.getElementById("commentsList");
+            list.innerHTML = '<div class="comments-status">Loading comments...</div>';
+
+            try {
+                const url =
+                    "https://www.googleapis.com/youtube/v3/commentThreads" +
+                    "?part=snippet" +
+                    "&videoId=" + encodeURIComponent(videoId) +
+                    "&maxResults=30" +
+                    "&order=relevance" +
+                    "&textFormat=plainText" +
+                    "&key=" + encodeURIComponent(YOUTUBE_API_KEY);
+
+                const response = await fetch(url);
+                const data = await response.json();
+
+                if (!response.ok) {
+                    throw new Error(
+                        data.error &&
+                        data.error.message
+                            ? data.error.message
+                            : "Comments could not be loaded."
+                    );
+                }
+
+                renderComments(data.items || []);
+            } catch (error) {
+                list.innerHTML =
+                    '<div class="comments-status">' +
+                    escapeHtml(error.message) +
+                    '</div>';
+            }
+        }
+
+        function renderComments(items) {
+            const list = document.getElementById("commentsList");
+
+            if (!items.length) {
+                list.innerHTML =
+                    '<div class="comments-status">No public comments were found.</div>';
+                return;
+            }
+
+            list.innerHTML = "";
+
+            items.forEach(function(item) {
+                const snippet =
+                    item.snippet &&
+                    item.snippet.topLevelComment &&
+                    item.snippet.topLevelComment.snippet
+                        ? item.snippet.topLevelComment.snippet
+                        : null;
+
+                if (!snippet) {
+                    return;
+                }
+
+                const comment = document.createElement("div");
+                comment.className = "comment";
+
+                const avatar =
+                    snippet.authorProfileImageUrl || "";
+
+                comment.innerHTML = `
+                    <img
+                        class="comment-avatar"
+                        src="${escapeHtml(avatar)}"
+                        alt=""
+                    >
+                    <div class="comment-body">
+                        <div class="comment-author">
+                            ${escapeHtml(snippet.authorDisplayName || "User")}
+                        </div>
+                        <p class="comment-text">
+                            ${escapeHtml(snippet.textDisplay || "")}
+                        </p>
+                    </div>
+                `;
+
+                list.appendChild(comment);
+            });
+        }
+
+        function closeComments() {
+            document.getElementById("shortComments").classList.remove("open");
+            commentsVideoId = "";
+        }
+
+        function formatNumber(value) {
+            const number = Number(value || 0);
+
+            if (number >= 1000000000) {
+                return (number / 1000000000).toFixed(1).replace(".0", "") + "B";
+            }
+
+            if (number >= 1000000) {
+                return (number / 1000000).toFixed(1).replace(".0", "") + "M";
+            }
+
+            if (number >= 1000) {
+                return (number / 1000).toFixed(1).replace(".0", "") + "K";
+            }
+
+            return String(number);
+        }
+
+        function escapeHtml(value) {
+            return String(value)
+                .replaceAll("&", "&amp;")
+                .replaceAll("<", "&lt;")
+                .replaceAll(">", "&gt;")
+                .replaceAll('"', "&quot;")
+                .replaceAll("'", "&#039;");
+        }
+
+        document.addEventListener("keydown", function(event) {
+            if (document.getElementById("shortsPage").style.display !== "block") {
+                return;
+            }
+
+            if (event.key === "Escape") {
+                if (document.getElementById("shortComments").classList.contains("open")) {
+                    closeComments();
+                } else {
+                    closeShorts();
+                }
+            }
+        });
+
     </script>
 
 </body>
