@@ -7,12 +7,17 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
     <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,400,0,0" rel="stylesheet">
 
     <style>
         * {
             box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
         }
 
         body {
@@ -184,12 +189,14 @@
             margin-right: 24px;
             flex-shrink: 0;
             font-size: 24px;
+            line-height: 1;
         }
 
         .sidebar-heading {
             font-size: 16px;
             font-weight: 600;
             padding: 8px 14px;
+            margin-bottom: 2px;
         }
 
         .sidebar-footer {
@@ -293,11 +300,33 @@
             }
         }
 
-        .video-author,
-        .video-stats {
+        .video-author {
             margin: 0 0 4px;
             font-size: 13px;
             color: #606060;
+        }
+
+        .video-stats {
+            margin: 0;
+            font-size: 13px;
+            color: #606060;
+        }
+
+        .no-results {
+            display: none;
+            text-align: center;
+            padding: 100px 20px;
+        }
+
+        .no-results-title {
+            font-size: 20px;
+            font-weight: 500;
+            margin-bottom: 8px;
+        }
+
+        .no-results-text {
+            color: #606060;
+            font-size: 14px;
         }
 
         .version {
@@ -375,10 +404,14 @@
             font-size: 14px;
         }
 
+        .watch-back:hover {
+            background: #e5e5e5;
+        }
+
         .watch-video-container {
             width: min(1100px, 100%);
             aspect-ratio: 16 / 9;
-            background: #000;
+            background: #181818;
             border-radius: 12px;
             overflow: hidden;
             position: relative;
@@ -387,47 +420,8 @@
         .watch-video-container iframe {
             width: 100%;
             height: 100%;
+            display: block;
             border: 0;
-        }
-
-        .video-error {
-            position: absolute;
-            inset: 0;
-            display: none;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-            background: #181818;
-            color: white;
-            text-align: center;
-            padding: 30px;
-        }
-
-        .video-error.show {
-            display: flex;
-        }
-
-        .video-error-title {
-            font-size: 20px;
-            font-weight: 600;
-            margin-bottom: 8px;
-        }
-
-        .video-error-text {
-            color: #aaa;
-            font-size: 14px;
-            margin-bottom: 20px;
-        }
-
-        .youtube-button {
-            border: 0;
-            border-radius: 20px;
-            padding: 11px 20px;
-            background: #fff;
-            color: #111;
-            font-size: 14px;
-            font-weight: 600;
-            cursor: pointer;
         }
 
         .watch-title {
@@ -474,8 +468,11 @@
             border-radius: 20px;
         }
 
-        .channel-header,
-        .channel-content {
+        .channel-back:hover {
+            background: #f2f2f2;
+        }
+
+        .channel-header {
             width: min(1100px, calc(100% - 48px));
             margin: 0 auto;
         }
@@ -528,11 +525,15 @@
             margin-bottom: 9px;
         }
 
-        .channel-handle,
-        .subscriber-count {
+        .channel-handle {
             font-size: 14px;
             color: #606060;
             margin-bottom: 8px;
+        }
+
+        .subscriber-count {
+            font-size: 14px;
+            color: #606060;
         }
 
         .subscribe-button {
@@ -544,6 +545,10 @@
             font-size: 14px;
             font-weight: 600;
             cursor: pointer;
+        }
+
+        .subscribe-button:hover {
+            background: #272727;
         }
 
         .channel-tabs {
@@ -567,9 +572,18 @@
             white-space: nowrap;
         }
 
+        .channel-tab:hover {
+            color: #0f0f0f;
+        }
+
         .channel-tab.active {
             color: #0f0f0f;
             border-bottom: 3px solid #0f0f0f;
+        }
+
+        .channel-content {
+            width: min(1100px, calc(100% - 48px));
+            margin: 0 auto;
         }
 
         .empty-channel {
@@ -655,6 +669,10 @@
                 line-height: 25px;
             }
 
+            .channel-information {
+                align-items: flex-start;
+            }
+
             .large-channel-picture {
                 width: 80px;
                 height: 80px;
@@ -665,8 +683,12 @@
                 font-size: 22px;
             }
 
-            .channel-information {
-                align-items: flex-start;
+            .subscribe-button {
+                padding: 9px 13px;
+            }
+
+            .channel-tabs {
+                gap: 12px;
             }
         }
     </style>
@@ -687,6 +709,7 @@
             </button>
 
             <div class="search-container">
+
                 <input
                     id="searchInput"
                     class="search-bar"
@@ -700,8 +723,11 @@
                     onclick="searchVideos()"
                     aria-label="Search"
                 >
-                    <span class="material-symbols-rounded search-symbol">search</span>
+                    <span class="material-symbols-rounded search-symbol">
+                        search
+                    </span>
                 </button>
+
             </div>
 
             <button
@@ -735,7 +761,9 @@
 
             <div class="sidebar-section">
 
-                <div class="sidebar-heading">You</div>
+                <div class="sidebar-heading">
+                    You
+                </div>
 
                 <button class="sidebar-item" onclick="openChannel()">
                     <span class="material-symbols-rounded">account_circle</span>
@@ -766,7 +794,9 @@
 
             <div class="sidebar-section">
 
-                <div class="sidebar-heading">Explore</div>
+                <div class="sidebar-heading">
+                    Explore
+                </div>
 
                 <button class="sidebar-item" onclick="selectSidebar(this)">
                     <span class="material-symbols-rounded">local_fire_department</span>
@@ -813,8 +843,15 @@
                 <div
                     class="video-preview"
                     data-title="Minecraft Features Nobody Uses"
-                    onclick="openVideo('DaSMd9aDDjs', 'Minecraft Features Nobody Uses', 'PrismBlock', '1.5M views • 4 weeks ago')"
+                    data-author="PrismBlock"
+                    onclick="openVideo(
+                        'DaSMd9aDDjs',
+                        'Minecraft Features Nobody Uses',
+                        'PrismBlock',
+                        '1.5M views • 4 weeks ago'
+                    )"
                 >
+
                     <div class="thumbnail-wrapper">
                         <img
                             class="thumbnail"
@@ -834,6 +871,7 @@
                         </div>
 
                         <div class="video-info">
+
                             <p class="video-title">
                                 Minecraft Features Nobody Uses
                             </p>
@@ -845,16 +883,25 @@
                             <p class="video-stats">
                                 1.5M views • 4 weeks ago
                             </p>
+
                         </div>
 
                     </div>
+
                 </div>
 
                 <div
                     class="video-preview"
                     data-title="Stupidest Kid Comments"
-                    onclick="openVideo('dQw4w9WgXcQ', 'Stupidest Kid Comments', 'Caldruki', '1.3M views • 8 months ago')"
+                    data-author="Caldruki"
+                    onclick="openVideo(
+                        'dQw4w9WgXcQ',
+                        'Stupidest Kid Comments',
+                        'Caldruki',
+                        '1.3M views • 8 months ago'
+                    )"
                 >
+
                     <div class="thumbnail-wrapper">
                         <img
                             class="thumbnail"
@@ -874,6 +921,7 @@
                         </div>
 
                         <div class="video-info">
+
                             <p class="video-title">
                                 Stupidest Kid Comments
                             </p>
@@ -885,16 +933,25 @@
                             <p class="video-stats">
                                 1.3M views • 8 months ago
                             </p>
+
                         </div>
 
                     </div>
+
                 </div>
 
                 <div
                     class="video-preview"
                     data-title="I just pulled a Tim the Alien in Blacket"
-                    onclick="openVideo('jNQXAC9IVRw', 'I just pulled a Tim the Alien in Blacket', 'Dares', '8.3M views • 8 months ago')"
+                    data-author="Dares"
+                    onclick="openVideo(
+                        'E4Ipahrmrr4',
+                        'I just pulled a Tim the Alien in Blacket',
+                        'Dares',
+                        '8.3M views • 8 months ago'
+                    )"
                 >
+
                     <div class="thumbnail-wrapper">
                         <img
                             class="thumbnail"
@@ -914,6 +971,7 @@
                         </div>
 
                         <div class="video-info">
+
                             <p class="video-title">
                                 I just pulled a Tim the Alien in Blacket
                             </p>
@@ -925,16 +983,30 @@
                             <p class="video-stats">
                                 8.3M views • 8 months ago
                             </p>
+
                         </div>
 
                     </div>
+
                 </div>
 
             </div>
 
+            <div class="no-results" id="noResults">
+                <div class="no-results-title">
+                    No results found
+                </div>
+
+                <div class="no-results-text">
+                    Try searching for another video or channel.
+                </div>
+            </div>
+
         </main>
 
-        <p class="version">Version 1.7</p>
+        <p class="version">
+            Version 1.7
+        </p>
 
     </div>
 
@@ -950,28 +1022,10 @@
                 id="youtubePlayer"
                 src=""
                 title="YouTube video player"
+                referrerpolicy="strict-origin-when-cross-origin"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowfullscreen
-            ></iframe>
-
-            <div class="video-error" id="videoError">
-
-                <div class="video-error-title">
-                    This video can't play here
-                </div>
-
-                <div class="video-error-text">
-                    YouTube isn't allowing this video to play in the embedded player.
-                </div>
-
-                <button
-                    class="youtube-button"
-                    onclick="openCurrentYouTubeVideo()"
-                >
-                    Watch on YouTube
-                </button>
-
-            </div>
+                allowfullscreen>
+            </iframe>
 
         </div>
 
@@ -1003,7 +1057,6 @@
                     class="large-channel-picture"
                     src="channel-pfp's/prismpfp.jpg"
                     alt="Channel"
-                    class="large-channel-picture"
                 >
 
                 <div class="channel-details">
@@ -1033,12 +1086,29 @@
 
             <div class="channel-tabs">
 
-                <button class="channel-tab active">HOME</button>
-                <button class="channel-tab">VIDEOS</button>
-                <button class="channel-tab">SHORTS</button>
-                <button class="channel-tab">LIVE</button>
-                <button class="channel-tab">PLAYLISTS</button>
-                <button class="channel-tab">COMMUNITY</button>
+                <button class="channel-tab active">
+                    HOME
+                </button>
+
+                <button class="channel-tab">
+                    VIDEOS
+                </button>
+
+                <button class="channel-tab">
+                    SHORTS
+                </button>
+
+                <button class="channel-tab">
+                    LIVE
+                </button>
+
+                <button class="channel-tab">
+                    PLAYLISTS
+                </button>
+
+                <button class="channel-tab">
+                    COMMUNITY
+                </button>
 
             </div>
 
@@ -1104,7 +1174,9 @@
             document.getElementById("homePage").style.display = "none";
             document.getElementById("watchPage").style.display = "none";
             document.getElementById("channelPage").style.display = "block";
+
             document.getElementById("youtubePlayer").src = "";
+
             window.scrollTo(0, 0);
         }
 
@@ -1112,6 +1184,7 @@
             document.getElementById("channelPage").style.display = "none";
             document.getElementById("watchPage").style.display = "none";
             document.getElementById("homePage").style.display = "block";
+
             window.scrollTo(0, 0);
         }
 
@@ -1123,13 +1196,10 @@
             document.getElementById("watchPage").style.display = "block";
 
             const player = document.getElementById("youtubePlayer");
-            const errorBox = document.getElementById("videoError");
-
-            errorBox.classList.remove("show");
 
             player.src =
                 "https://www.youtube.com/embed/" +
-                videoId +
+                encodeURIComponent(videoId) +
                 "?autoplay=1&rel=0";
 
             document.getElementById("watchTitle").textContent = title;
@@ -1140,21 +1210,22 @@
             window.scrollTo(0, 0);
         }
 
-        function openCurrentYouTubeVideo() {
+        function watchOnYouTube() {
             if (!currentVideoId) {
                 return;
             }
 
             window.open(
                 "https://www.youtube.com/watch?v=" +
-                currentVideoId,
-                "_blank"
+                encodeURIComponent(currentVideoId),
+                "_blank",
+                "noopener"
             );
         }
 
         function closeVideo() {
             document.getElementById("youtubePlayer").src = "";
-            document.getElementById("videoError").classList.remove("show");
+
             document.getElementById("watchPage").style.display = "none";
             document.getElementById("channelPage").style.display = "none";
             document.getElementById("homePage").style.display = "block";
@@ -1163,7 +1234,8 @@
         }
 
         function subscribe() {
-            const button = document.querySelector(".subscribe-button");
+            const button =
+                document.querySelector(".subscribe-button");
 
             if (button.textContent.trim() === "Subscribe") {
                 button.textContent = "Subscribed";
@@ -1191,18 +1263,45 @@
                 document
                     .getElementById("searchInput")
                     .value
+                    .toLowerCase()
                     .trim();
 
-            if (!search) {
-                return;
-            }
+            const videos =
+                document.querySelectorAll(".video-preview");
 
-            window.open(
-                "https://www.youtube.com/results?search_query=" +
-                encodeURIComponent(search),
-                "_blank"
-            );
+            let visibleVideos = 0;
+
+            videos.forEach(function(video) {
+                const title =
+                    video
+                        .getAttribute("data-title")
+                        .toLowerCase();
+
+                const author =
+                    video
+                        .getAttribute("data-author")
+                        .toLowerCase();
+
+                const matches =
+                    search === "" ||
+                    title.includes(search) ||
+                    author.includes(search);
+
+                if (matches) {
+                    video.style.display = "";
+                    visibleVideos++;
+                } else {
+                    video.style.display = "none";
+                }
+            });
+
+            document.getElementById("noResults").style.display =
+                visibleVideos === 0 ? "block" : "none";
         }
+
+        document
+            .getElementById("searchInput")
+            .addEventListener("input", searchVideos);
 
         document
             .getElementById("searchInput")
@@ -1218,14 +1317,6 @@
                 if (event.target === this) {
                     closeMaintenance();
                 }
-            });
-
-        document
-            .getElementById("youtubePlayer")
-            .addEventListener("error", function() {
-                document
-                    .getElementById("videoError")
-                    .classList.add("show");
             });
     </script>
 
